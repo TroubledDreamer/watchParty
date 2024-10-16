@@ -2,6 +2,7 @@ package com.example.watchparty.model
 
 import androidx.room.Dao
 import com.example.watchparty.WatchParty
+import com.example.watchparty.User
 import kotlinx.coroutines.flow.Flow
 import androidx.room.Query
 import androidx.room.Insert
@@ -24,6 +25,27 @@ interface WatchPartyDAO {
     fun update(watchParty: WatchParty)
 
     @Query("DELETE FROM WatchParty WHERE id = :id")
-    fun delete(id : Long)
+    fun deleteWatchParty(id : Long)
+
+    @Query("SELECT * FROM User")
+    fun getAllUsers(): Flow<List<User>>
+
+    @Query("SELECT * FROM User WHERE id = :id")
+    fun getUser(id: Long): Flow<User>
+
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun addUser(newUser: User)
+
+    @Update
+    fun update(user: User)
+
+    @Query("DELETE FROM User WHERE id = :id")
+    fun deleteUser(id : Long)
+
+    @Query("DELETE FROM WatchParty")
+    fun deleteAllParties()
+
+    @Query("DELETE FROM User")
+    fun deleteAllUsers()
 
 }

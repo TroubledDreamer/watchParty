@@ -38,8 +38,7 @@ import com.bumptech.glide.request.transition.Transition
 /**
  * Loads a grid of cards with movies to browse.
  */
-class MainFragment : BrowseSupportFragment() {
-
+class MainFragment : BrowseSupportFragment()  {
     private val mHandler = Handler(Looper.myLooper()!!)
     private lateinit var mBackgroundManager: BackgroundManager
     private var mDefaultBackground: Drawable? = null
